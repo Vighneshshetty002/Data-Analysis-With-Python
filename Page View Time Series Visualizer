@@ -1,0 +1,40 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from pandas.plotting import register_matplotlib_converters
+
+# Load the data into a pandas DataFrame (replace 'your_data.csv' with your actual data file)
+df = pd.read_csv('your_data.csv', parse_dates=['date'], index_col='date')
+
+# Ensure that the dates are properly recognized as datetime objects
+register_matplotlib_converters()
+
+# Clean the data (handle missing values, outliers, etc.) if needed
+# df = df.dropna()
+
+# Create a line plot for page views
+plt.figure(figsize=(14, 6))
+plt.plot(df.index, df['value'], color='blue', label='Page Views', linewidth=1)
+
+# Add title and labels
+plt.title('Page Views Over Time')
+plt.xlabel('Date')
+plt.ylabel('Page Views')
+
+# Add a legend
+plt.legend(loc='upper left')
+
+# Display the plot
+plt.show()
+
+# Create a bar plot for average daily page views
+plt.figure(figsize=(14, 6))
+sns.barplot(x=df.index.year, y=df['value'], ci=None, color='green')
+
+# Add title and labels
+plt.title('Average Daily Page Views by Year')
+plt.xlabel('Year')
+plt.ylabel('Average Daily Page Views')
+
+# Display the plot
+plt.show()
