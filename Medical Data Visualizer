@@ -1,0 +1,33 @@
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Load the medical data into a pandas DataFrame (replace 'your_data.csv' with your actual data file)
+df = pd.read_csv('your_data.csv')
+
+# Display the first few rows of the DataFrame
+print(df.head())
+
+# Visualize age distribution using a histogram
+plt.figure(figsize=(10, 6))
+sns.histplot(df['age'], bins=20, kde=True, color='skyblue')
+plt.title('Age Distribution')
+plt.xlabel('Age')
+plt.ylabel('Frequency')
+plt.show()
+
+# Visualize BMI distribution using a boxplot
+plt.figure(figsize=(10, 6))
+sns.boxplot(x='BMI', data=df, color='lightgreen')
+plt.title('BMI Distribution')
+plt.xlabel('BMI')
+plt.show()
+
+# Visualize the relationship between age and blood pressure using a scatter plot
+plt.figure(figsize=(10, 6))
+sns.scatterplot(x='age', y='blood_pressure', data=df, hue='smoker', palette='Set2')
+plt.title('Age vs Blood Pressure')
+plt.xlabel('Age')
+plt.ylabel('Blood Pressure')
+plt.legend(title='Smoker')
+plt.show()
